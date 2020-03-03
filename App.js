@@ -45,8 +45,8 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
         console.log($scope.wordLoaded );
     };
     function callAPI() {
-        //"https://api.dictionaryapi.dev/api/v1/entries/en/"
-        $http.get("https://arcane-chamber-41533.herokuapp.com/getEnglishDef/" + $scope.words.name).
+
+        $http.get("https://api.dictionaryapi.dev/api/v1/entries/en/" + $scope.words.name).
         then(function(response){
 
             let word = response.data[0]['word'];
