@@ -45,15 +45,15 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
         console.log($scope.wordLoaded );
     };
 
-    $http.get("https://arcane-chamber-41533.herokuapp.com/").
-    then(function(response){
-        $scope.englishEndpoint = response.data["endpoint"];
-
-    });
+    // $http.get("https://arcane-chamber-41533.herokuapp.com/").
+    // then(function(response){
+    //     $scope.englishEndpoint = response.data["endpoint"];
+    //
+    // });
 
     function callAPI() {
-        // $http.get("https://api.dictionaryapi.dev/api/v1/entries/en/" + $scope.words.name).
-        $http.get($scope.englishEndpoint + $scope.words.name).
+        $http.get("https://api.dictionaryapi.dev/api/v1/entries/en/" + $scope.words.name).
+        // $http.get($scope.englishEndpoint + $scope.words.name).
         then(function(response){
 
             console.log(response.data);
