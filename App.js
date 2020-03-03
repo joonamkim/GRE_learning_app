@@ -10,6 +10,16 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
     $scope.clicked = false;
     $scope.words = {};
     $scope.wordsLoading = true;
+    $scope.word = "";
+    $scope.keys = [];
+    $scope.definitions = [];
+    $scope.examples = [];
+
+
+    $scope.tempDic = {};
+    $scope.tempList = [];
+
+    $scope.anotherDic = {};
 
     // $http.get('https://frozen-peak-77472.herokuapp.com/getString').
     //     then(function(response) {
@@ -23,7 +33,7 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
     $scope.lookup = function(){
 
         callAPI();
-
+        $scope.words = {};
         // console.log($scope.words);
         // 여기서 단어 정리 되는 것들을 무르는 function 필요
 
@@ -61,6 +71,44 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
             console.log($scope.defExDict);
             console.log($scope.wordLoaded );
             $scope.wordsLoading = false;
+
+            $scope.word = word;
+
+            console.log("#$$$$$$$$$$$$$$$$");
+            console.log(word);
+            console.log("#$$$$$$$$$$$$$$$$");
+
+
+            for (let key in $scope.words) {
+                for (let key1 in $scope.words[key]) {
+                    // console.log(key1, $scope.words[key][key1])
+                    // $scope.keys.push(key1);
+                    console.log("key1   - " + key1);
+
+                    $scope.tempList.push($scope.words[key][key1]['definition']);
+                    $scope.tempList.push($scope.words[key][key1]['example']);
+
+                    $scope.anotherDic['definition'] = $scope.words[key][key1]['definition'];
+                    $scope.anotherDic['example'] = $scope.words[key][key1]['example'];
+
+                    // $scope.definitions.push($scope.words[key][key1]['definition']);
+                    // $scope.examples.push($scope.words[key][key1]['example']);
+
+
+                    $scope.tempDic[key1] = $scope.anotherDic;
+                    $scope.anotherDic = {};
+                    $scope.tempList = [];
+
+                }
+            }
+            // console.log($scope.keys);
+            // console.log($scope.definitions);
+            // console.log($scope.examples);
+            console.log($scope.tempDic);/**/
+
+
+
+
         });
     }
     // $scope.$watch('wordLoaded==true', function (newValue, oldValue) {

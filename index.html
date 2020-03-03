@@ -109,8 +109,17 @@
 
 
                     </div>
-                    <div ng-show="!wordsLoading" class="modal-body" style="color:#000000";>
-                        {{words}}
+                    <div align="left" ng-show="!wordsLoading" class="modal-body" style="color:#000000";>
+                      <div><font size="+5">{{word}}</font></div>
+                      <div ng-repeat="(key, def) in tempDic"><font size="+1"><b><u>{{key}}</u></b></font>
+                        <div><b>definition: </b>{{def.definition}} </div>
+                        <div><b>example: </b>{{def.example}} </div>
+                        <br>
+                      </div>
+
+
+
+
                     </div>
                     <div class="modal-footer">
 <!--                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
