@@ -29,7 +29,6 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
     // });
 
     console.log("clicked " +$scope.clicked);
-
     $scope.lookup = function(){
 
         callAPI();
@@ -46,7 +45,8 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
         console.log($scope.wordLoaded );
     };
     function callAPI() {
-        $http.get("https://api.dictionaryapi.dev/api/v1/entries/en/" + $scope.words.name).
+        //"https://api.dictionaryapi.dev/api/v1/entries/en/"
+        $http.get("https://arcane-chamber-41533.herokuapp.com/getEnglishDef/" + $scope.words.name).
         then(function(response){
 
             let word = response.data[0]['word'];
@@ -73,10 +73,6 @@ angular.module('GRE', ['ngSanitize', 'ngclipboard'])
             $scope.wordsLoading = false;
 
             $scope.word = word;
-
-            console.log("#$$$$$$$$$$$$$$$$");
-            console.log(word);
-            console.log("#$$$$$$$$$$$$$$$$");
 
 
             for (let key in $scope.words) {
